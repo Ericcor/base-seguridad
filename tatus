@@ -1,0 +1,279 @@
+warning: LF will be replaced by CRLF in app/Providers/AppServiceProvider.php.
+The file will have its original line endings in your working directory
+[1mdiff --git a/app/Helpers/helpers.php b/app/Helpers/helpers.php[m
+[1mindex a1d7943..a193d08 100644[m
+[1m--- a/app/Helpers/helpers.php[m
+[1m+++ b/app/Helpers/helpers.php[m
+[36m@@ -4,7 +4,14 @@[m [msetlocale(LC_ALL, 'es');[m
+ if(!function_exists('routeIs')) {[m
+     function routeIs($url, $class = 'menu-open')[m
+     {[m
+[31m-    	return Request::is($url) ? $class : '';[m
+[32m+[m[32m        if (is_array($url)) {[m
+[32m+[m[32m            foreach ($url as $url) {[m
+[32m+[m[41m    [m	[32m       if (Request::is($url))[m
+[32m+[m[32m                return $class;[m
+[32m+[m[32m            }[m
+[32m+[m[32m            return '';[m
+[32m+[m[32m        }[m
+[32m+[m[32m        return Request::is($url) ? $class : '';[m
+     }[m
+ }[m
+ [m
+[1mdiff --git a/app/Providers/AppServiceProvider.php b/app/Providers/AppServiceProvider.php[m
+[1mindex 3f1c8db..96f59fc 100644[m
+[1m--- a/app/Providers/AppServiceProvider.php[m
+[1m+++ b/app/Providers/AppServiceProvider.php[m
+[36m@@ -13,7 +13,7 @@[m [mclass AppServiceProvider extends ServiceProvider[m
+      */[m
+     public function boot()[m
+     {[m
+[31m-        \Blade::setEchoFormat('e(utf8_encode(%s))');[m
+[32m+[m[32m        \Blade::setEchoFormat('e(%s)');[m
+     }[m
+ [m
+     /**[m
+[1mdiff --git a/resources/views/includes/sidebar/configuracion/configuracion.blade.php b/resources/views/includes/sidebar/configuracion/configuracion.blade.php[m
+[1mindex e7f023c..3917858 100644[m
+[1m--- a/resources/views/includes/sidebar/configuracion/configuracion.blade.php[m
+[1m+++ b/resources/views/includes/sidebar/configuracion/configuracion.blade.php[m
+[36m@@ -1,423 +1,212 @@[m
+[32m+[m[32m@if (auth()->user()->hasPermissionModule('configuracion'))[m
+[32m+[m[32m<!-- Configuracion -->[m
+[32m+[m[32m<li class="nav-item has-treeview {{ routeIs('Configuracion/*') }}">[m
+[32m+[m[32m  <a href="#" class="nav-link"><i class="nav-icon fa fa fa-cog"></i><p>Configuración<i class="right fa fa-angle-left"></i></p></a>[m
+[32m+[m[32m  <ul class="nav nav-treeview">[m
+[32m+[m
+[32m+[m[32m    <!-- Participantes -->[m
+[32m+[m[32m    <li class="nav-item has-treeview {{ routeIs('Configuracion/Participantes/*') }}">[m
+[32m+[m[32m      <a href="#" class="nav-link"><i class="nav-icon fa fa fa-cog" class="nav-link"></i><p>Participantes<i class="fa fa-angle-left right"></i></p></a>[m
+[32m+[m[32m      <ul class="nav nav-treeview">[m
+[32m+[m
+[32m+[m[32m        <!-- Participantes Inactivos -->[m
+[32m+[m[32m        <li class="nav-item {{ routeIs(['Configuracion/Participantes/Activos', 'Participantes_inactivos/*'], 'active') }}">[m
+[32m+[m[32m          <a href="{{ url('Configuracion/Participantes/Activos') }}" class="nav-link"><i class="nav-icon fa fa fa-cog"></i>Activos</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m
+[32m+[m[32m        <!-- Participantes Fusionados -->[m
+[32m+[m[32m        <li class="nav-item {{ routeIs('Configuracion/Participantes/Fusionados', 'active') }}">[m
+[32m+[m[32m          <a href="{{ url('Configuracion/Participantes/Fusionados') }}" class="nav-link"><i class="nav-icon fa fa fa-cog"></i>Fusionados</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m
+[32m+[m[32m        <!-- Participantes inactivos -->[m
+[32m+[m[32m        <li class="nav-item {{ routeIs(['Configuracion/Participantes/Inactivos', 'Participantes_inactivos/*', 'ParticipantesSuspendido'], 'active') }}">[m
+[32m+[m[32m          <a href="{{url('Configuracion/Participantes/Inactivos')}}" class="nav-link"><i class="nav-icon fa fa fa-cog"></i>Inactivos</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m
+[32m+[m[32m      </ul>[m
+[32m+[m[32m    </li>[m
+[32m+[m[32m    <!-- /.Participantes -->[m
+[32m+[m
+[32m+[m[32m    <!-- Calendario -->[m
+[32m+[m[32m    <li class="nav-item has-treeview {{ routeIs('Configuracion/Calendario/*') }}">[m
+[32m+[m[32m      <a href="#" class="nav-link"><i class="nav-icon fa fa fa-cog"></i><p>Calendario<i class="fa fa-angle-left right"></i></p></a>[m
+[32m+[m[32m      <ul class="nav nav-treeview">[m
+[32m+[m
+[32m+[m[32m        <!-- Semana de Compensación -->[m
+[32m+[m[32m        <li class="nav-item {{ routeIs(['Configuracion/Calendario/SemanaCompensacion', 'Configuracion/SemanaCompensacion/*'], 'active') }}">[m
+[32m+[m[32m          <a href="{{ url('Configuracion/Calendario/SemanaCompensacion') }}" class="nav-link"><i class="nav-icon fa fa fa-cog"></i>Semana de compensación</a>[m
+[32m+[m[32m        </li>[m
+[32m+[m[32m        <!-- /.Semana de Compensación -->[m
+[32m+[m
+[32m+[m[32m        <li class="nav-item has-treeview {{ routeIs('Configuracion/Calendario/DiasExcepcionales/*') }}">[m
+[32m+[m[32m          <a href="#" class="nav-link"><i class="nav-icon fa fa fa-cog"></i><p>Días excepcionales<i class="fa fa-angle-left right"></i></p></a>[m
+[32m+[m[32m          <ul class="nav nav-treeview">[m
+[32m+[m
+[32m+[m[32m            <!-- No Laborables -->[m
+[32m+[m[32m            <li class="nav-item {{ routeIs('Configuracion/Calendario/DiasExcepcionales/NoLaborables', 'active') }}">[m
+[32m+[m[32m              <a href="{{url('Configuracion/Calendario/DiasExcepcionales/NoLaborables')}}" class="nav-link"><i class="nav-icon fa fa fa-cog"></i><p>No laborables</p></a>[m
+[32m+[m[32m            </li>[m
+[32m+[m[32m            <!-- /.No Laborables  -->[m
+ [m
+[31m-  @if (auth()->user()->hasPermissionModule('configuracion'))[m
+[31m-    {{--*/ $empresas = '' /*--}}[m
+[31m-    {{--*/ $cobranza = '' /*--}}[m
+[31m-    {{--*/ $alto = '' /*--}}[m
+[31m-    {{--*/ $tablas = '' /*--}}[m
+[31m-    {{--*/ $eventos = '' /*--}}[m
+[31m-[m
+[31m-    @if(Request::is('Configuracion/EmpresasOrdenantes') || Request::is('Configuracion/EmpresasOrdenantes/*'))[m
+[31m-      {{--*/ $configuracion = 'active' /*--}}[m
+[31m-      {{--*/ $empresas = 'active' /*--}}[m
+[31m-    @endif[m
+[31m-[m
+[31m-    @if ( Request::is('Configuracion/Cobranza/RecuperacionCostos') ||  Request::is('Configuracion/Cobranza/RecuperacionCostos/*'))[m
+[31m-        {{--*/ $configuracion = 'active' /*--}}[m
+[31m-        {{--*/ $cobranza = 'active' /*--}}[m
+[31m-        {{--*/ $alto = 'disable' /*--}}[m
+[31m-    @endif[m
+[31m-[m
+[31m-    @if ( Request::is('Configuracion/Cobranza/AltoValor/LimiteBajoValor') ||  Request::is('Configuracion/Cobranza/AltoValor/LimiteBajoValor/*') ||  Request::is('Configuracion/Cobranza/AltoValor/Exoneracion') ||  Request::is('Configuracion/Cobranza/AltoValor/Exoneracion/*'))[m
+[31m-      {{--*/ $configuracion = 'active' /*--}}[m
+[31m-      {{--*/ $cobranza = 'active' /*--}}[m
+[31m-      {{--*/ $alto = 'active' /*--}}[m
+[31m-    @endif[m
+[31m-[m
+[31m-    @if ( Request::is('Configuracion/AdministracionTablas/ParametrosSolucion') ||  Request::is('Configuracion/AdministracionTablas/ParametrosSolucion/*') || Request::is('Configuracion/AdministracionTablas/ValidacionesSolucion') || Request::is('Configuracion/AdministracionTablas/ValidacionesSolucion/*') )[m
+[31m-      {{--*/ $configuracion = 'active' /*--}}[m
+[31m-     [m
+[31m-      {{--*/ $tablas = 'active' /*--}}[m
+[31m-    @endif[m
+[31m-[m
+[31m-    @if ( Request::is('Configuracion/Eventos') || Request::is('Configuracion/Eventos/*'))[m
+[31m-      {{--*/ $configuracion = 'active' /*--}}[m
+[31m-         [m
+[31m-      {{--*/ $eventos = 'active' /*--}}[m
+[31m-    @endif[m
+[31m-[m
+[31m-    <!-- Configuracion -->[m
+[31m-[m
+[31m-    <li class="{{ $configuracion }} treeview"><a href="#"><i class='fa fa fa-cog'></i><span>Configuración</span><i class="fa fa-angle-left pull-right"></i></a>[m
+[31m-      <ul class="treeview-menu">[m
+[31m-[m
+[31m-        @permissions(['R0000-01-01-01','R0000-01-01-02','R0000-01-01-03','R0000-01-01-04','R0000-01-01-05','R0000-01-02-01','R0000-01-03-01'])[m
+[31m-          <!-- Participantes -->[m
+[31m-          <li class="{{ $participantes }}"><a href="#"><i class="fa fa fa-cog"></i><span class="pull-right-container">Participantes</span><i class="fa fa-angle-left pull-right"></i></a>[m
+[31m-            <ul class="treeview-menu">[m
+[31m-[m
+[31m-              <!-- Participantes Inactivos -->[m
+[31m-              @if(Request::is('Configuracion/Participantes/Activos') || Request::is('Participantes_inactivos/*'))[m
+[31m-              <li class="active">[m
+[31m-                @else[m
+[31m-                <li>[m
+[31m-                @endif[m
+[31m-                @permissions(['R0000-01-01-01','R0000-01-01-02'])[m
+[31m-                <a href="{{url('Configuracion/Participantes/Activos')}}"><i class="fa fa fa-cog"></i>Activos</a>[m
+[31m-                @endauth[m
+[31m-              </li>[m
+[31m-[m
+[31m-                 <!-- Participantes Fusionados -->[m
+[31m-              @if(Request::is('Configuracion/Participantes/Fusionados'))[m
+[31m-                <li class="active">[m
+[31m-                @else[m
+[31m-                <li>[m
+[31m-                  @endif[m
+[31m-                  @permissions(['R0000-01-02-01'])[m
+[31m-                  <a href="{{url('Configuracion/Participantes/Fusionados')}}"><i class="fa fa fa-cog"></i>Fusionados</a>[m
+[31m-                  @endauth[m
+[31m-                </li>[m
+[31m-[m
+[31m-[m
+[31m-              <!-- Participantes inactivos -->[m
+[31m-              @if(Request::is('Configuracion/Participantes/Inactivos') || Request::is('Participantes_inactivos/*') || Request::is('ParticipantesSuspendido') || Request::is('Participantes_suspendido/*'))[m
+[31m-                <li class="active">[m
+[31m-                @else[m
+[31m-                <li>[m
+[31m-              @endif[m
+[31m-              @permissions(['R0000-01-03-01','R0000-01-01-04','R0000-01-01-05'])[m
+[31m-              <a href="{{url('Configuracion/Participantes/Inactivos')}}"><i class="fa fa fa-cog"></i>Inactivos</a>[m
+[31m-              </li>[m
+[31m-              @endauth[m
+[31m-              [m
+[31m-[m
+[31m-                <!-- Participantes Absorbidos[m
+[31m-                @if(Request::is('ParticipantesAbsorbidos') || Request::is('Participantes_absorbidos/*'))[m
+[31m-                <li class="active">[m
+[31m-                @else[m
+[31m-                <li>[m
+[31m-                @endif[m
+[31m-            </li>-->[m
+[31m-            </ul>[m
+[31m-          </li>[m
+[31m-          <!-- /.Participantes -->[m
+[31m-        @endauth[m
+[31m-[m
+[31m-        @permissions(['R0000-02-01-01','R0000-02-01-02','R0000-02-02-01-01','R0000-02-02-01-02','R0000-02-02-01-03','R0000-02-02-02-01','R0000-02-02-02-02','R0000-02-02-02-03','R0000-02-02-01-01','R0000-02-02-01-02','R0000-02-02-01-03'])[m
+[31m-[m
+[31m-          <!-- Calendario -->[m
+[31m-          <li class="{{ $calendario }}"><a href="#"><i class="fa fa fa-cog"></i><span class="pull-right-container">Calendario</span><i class="fa fa-angle-left pull-right"></i></a>[m
+[31m-            <ul class="treeview-menu">[m
+[31m-[m
+[31m-              <!-- Semana de Compensación -->[m
+[31m-              @if(Request::is('Configuracion/Calendario/SemanaCompensacion') || Request::is('Configuracion/Calendario/SemanaCompensacion/*'))[m
+[31m-              <li class="active">[m
+[31m-                @else[m
+[31m-              <li>[m
+[31m-              @endif[m
+[31m-              @permissions(['R0000-02-01-01','R0000-02-01-02'])[m
+[31m-                <a href="{{url('Configuracion/Calendario/SemanaCompensacion')}}"><i class="fa fa fa-cog"></i>Semana de compensación</a>[m
+[31m-              @endauth[m
+[31m-              </li>[m
+[31m-                <!-- /.Semana de Compensación -->[m
+[31m-[m
+[31m-              @permissions(['R0000-02-02-01-01','R0000-02-02-01-02','R0000-02-02-01-03','R0000-02-02-02-01','R0000-02-02-02-02','R0000-02-02-02-03'])[m
+[31m-[m
+[31m-                <li class="{{ $dias }}"><a href="#"><i class="fa fa fa-cog"></i><span class="pull-right-container">Días excepcionales</span><i class="fa fa-angle-left pull-right"></i></a>[m
+[31m-                  <ul class="treeview-menu">[m
+[31m-[m
+[31m-[m
+[31m-                    <!-- Feriado -->[m
+[31m-                    @if(Request::is('Configuracion/Calendario/DiasExcepcionales/NoLaborables') || Request::is('feriado/*'))[m
+[31m-                    <li class="active">[m
+[31m-                      @else[m
+[31m-                      <li>[m
+[31m-                        @endif[m
+[31m-                        @permissions(['R0000-02-02-01-01','R0000-02-02-01-02','R0000-02-02-01-03'])[m
+[31m-                        <a href="{{url('Configuracion/Calendario/DiasExcepcionales/NoLaborables')}}"><i class="fa fa fa-cog"></i>No laborables</a>[m
+[31m-                        @endauth[m
+[31m-                      </li>[m
+[31m-                      <!-- /.feriados  -->[m
+[31m-[m
+[31m-                          <!-- Feriado -->[m
+[31m-                    @if(Request::is('Configuracion/Calendario/DiasExcepcionales/Laborables') || Request::is('laborables/*'))[m
+[31m-                    <li class="active">[m
+[31m-                      @else[m
+[31m-                      <li>[m
+[31m-                        @endif[m
+[31m-                        @permissions(['R0000-02-02-02-01','R0000-02-02-02-02','R0000-02-02-02-03'])[m
+[31m-                        <a href="{{url('Configuracion/Calendario/DiasExcepcionales/Laborables')}}"><i class="fa fa fa-cog"></i>Laborables</a>[m
+[31m-                        @endauth[m
+[31m-                      </li>[m
+[31m-                      <!-- /.feriados  -->[m
+[31m-                  </ul>[m
+[31m-                </li>[m
+[31m-              @endauth[m
+[31m-[m
+[31m-            </ul>[m
+[31m-          </li>[m
+[31m-        @endauth[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-        <!-- Medios de Pagos -->[m
+[31m-        @permissions(['R0000-03-01-01','R0000-03-01-02','R0000-03-01-03','R0000-03-02-01','R0000-03-02-02','R0000-03-02-03','R0000-03-02-04','R0000-03-03-01','R0000-03-03-02','R0000-03-03-03','R0000-03-03-04'])[m
+[31m-[m
+[31m-          <li class="{{ $medios_pagos }}"><a href="#"><i class="fa fa fa-cog"></i><span class="pull-right-container"> Medios de pagos</span><i class="fa fa-angle-left pull-right"></i></a>[m
+[31m-            <ul class="treeview-menu">[m
+[31m-[m
+[31m-              <!-- Productos -->[m
+[31m-              @if(Request::is('Configuracion/MediosPagos/Productos') || Request::is('Configuracion/MediosPagos/Productos/*'))[m
+[31m-              <li class="active">[m
+[31m-                @else[m
+[31m-                <li>[m
+[31m-                  @endif[m
+[31m-                  @permissions(['R0000-03-01-01','R0000-03-01-02','R0000-03-01-03'])[m
+[31m-                  <a href="{{url('Configuracion/MediosPagos/Productos')}}"><i class="fa fa fa-cog"></i>Productos</a>[m
+[31m-                  @endauth[m
+[31m-                </li>[m
+[31m-[m
+[31m-                <!-- Sub-Productos -->[m
+[31m-                @if(Request::is('Configuracion/MediosPagos/SubProductos') || Request::is('Configuracion/MediosPagos/SubProductos/*'))[m
+[31m-                <li class="active">[m
+[31m-                  @else[m
+[31m-                  <li>[m
+[31m-                    @endif[m
+[31m-                    @permissions(['R0000-03-02-01','R0000-03-02-02','R0000-03-02-03','R0000-03-02-04'])[m
+[31m-                    <a href="{{url('Configuracion/MediosPagos/SubProductos')}}"><i class="fa fa fa-cog"></i>Sub-productos</a>[m
+[31m-                    @endauth[m
+[31m-                  </li>[m
+[31m-[m
+[31m-                  <!-- Razones de Devolución-->[m
+[31m-                  @if(Request::is('Configuracion/MediosPagos/RazonesDevolucion') || Request::is('Configuracion/MediosPagos/RazonesDevolucion/*'))[m
+[31m-                  <li class="active">[m
+[31m-                    @else[m
+[31m-                    <li>[m
+[31m-                      @endif[m
+[31m-                      @permissions(['R0000-03-03-01','R0000-03-03-02','R0000-03-03-03','R0000-03-03-04'])[m
+[31m-                      <a href="{{url('Configuracion/MediosPagos/RazonesDevolucion')}}"><i class="fa fa fa-cog"></i>Razones de devolución</a>[m
+[31m-                      @endauth[m
+

@@ -1,0 +1,371 @@
+body,
+.btn {
+  font-size: 14px !important;
+}
+/* color de hover para menu */
+.sidebar-dark-primary .nav-sidebar>.nav-item.menu-open>.nav-link, .sidebar-dark-primary .nav-sidebar>.nav-item:hover>.nav-link {
+  color: #fff;
+  background-color: #f4a329;
+  border-left: 3px solid #ffffff;
+  padding: 0.5rem 0.8rem;
+}
+/* sangria para los submenu, y ajuste de espaciado top/bottom */
+ul.nav-sidebar li.nav-item ul.nav li.nav-item a.nav-link {
+  padding-left: 1.5rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+}
+ul.nav-sidebar li.nav-item ul.nav li.nav-item ul.nav li.nav-item a.nav-link {
+  padding-left: 2rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+}
+ul.nav-sidebar li.nav-item ul.nav li.nav-item ul.nav li.nav-item ul.nav li.nav-item a.nav-link {
+  padding-left: 2.5rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+}
+ul.nav-sidebar li.nav-item ul.nav li.nav-item ul.nav li.nav-item ul.nav li.nav-item ul.nav li.nav-item a.nav-link {
+  padding-left: 3rem;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+}
+/* ajuste del icono que indica un desplegable de submenu, para colocarlo adaptado al espaciado top/bottom anterior */
+ul.nav-sidebar li.nav-item ul.nav li.nav-item a.nav-link p i,
+ul.nav-sidebar li.nav-item ul.nav li.nav-item ul.nav li.nav-item a.nav-link p i,
+ul.nav-sidebar li.nav-item ul.nav li.nav-item ul.nav li.nav-item ul.nav li.nav-item a.nav-link p i,
+ul.nav-sidebar li.nav-item ul.nav li.nav-item ul.nav li.nav-item ul.nav li.nav-item ul.nav li.nav-item a.nav-link p i {
+  top: 7px;
+}
+/* header del sidebar */
+li.nav-header {
+  background-color: #1a2226 !important;
+  border-radius: 3px;
+}
+/* color de fondo de los submenus */
+ul.nav.nav-treeview {
+  background-color:#47516b !important;
+  border-radius:3px;
+}
+/* colocar la barra del header en posicion fixed */
+.fixed-navbar {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1100;
+}
+/* ajuste de contenedor body */
+.fixed_wrapper {
+  padding-bottom: 1rem!important;
+}
+/* ajuste del espaciado para el contenedor header, tomando en cuenta la navbar del header en posicion fixed */
+.content-header {
+  padding-top: 75px;
+}
+/* para colocar el icono dentro del content-header de un tamaño mayor */
+section.content-header div div div h1 i.fa,
+div.info-box span.info-box-icon i.fa {
+  font-size: 25px !important;
+}
+/* elimina la propiedad de unica linea para elementos de texto dentro de un box */
+.info-box-text {
+  white-space: normal;
+}
+/* para mantener el mismo tamaño en los elementos info-box */
+.info-box {
+  height: 85%;
+}
+/* scroll para las opciones del menu */
+.sidebar.slimScroll {
+  background-color: #222733 !important;
+}
+
+.brand-image {
+  width: 138px;
+  height: auto;
+  max-height: initial;
+  float: none;
+}
+
+.fa {
+  font-size: 14px !important;
+}
+/* color de encabezado para las tablas */
+.theadtable,
+.thead-default,
+.tfoot-default {
+    background-color:#c2e7fc !important;
+}
+/* al colocar un label (badge) dentro de un td, para colocarle el color de letra adaptable al fondo */
+td a.badge-danger {
+  color: #ffffff !important;
+}
+/* al colocar un label (badge) dentro de un div, en un formulario, para adaptar el tamaño de letra al general */
+div.form-group span.badge {
+  font-size: 100%;
+}
+/* colocar el tamaño de un hr adaptado al card-body */
+hr.col-sm-12 {
+  width: 98%;
+}
+/* homologar el estilo del card-footer al mismo que tiene el header */
+div.card-footer {
+    background-color: transparent !important;
+    border-top: 1px solid rgba(0,0,0,.125);
+}
+/*fondo sidebar activo */
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+    color: #fff;
+    background-color: #f4a329;
+    border-left: 3px solid #ffffff;
+    padding: 0.5rem 0.8rem;
+}
+/* espaciado bajo el sidebar para cuando existan muchos elementos abiertos en la barra y no desaparezcan */
+nav.mb-sidebar-body {
+    margin-bottom: 60px;
+}
+/* css para elementos de la vista de login */
+.login-box {
+  width: 420px;
+  color: white !important;
+}
+.login-box-body {
+  background-color: #47516b !important;
+  padding: 20px;
+}
+.login-box-body input {
+  border-radius: 0;
+  border: none;
+  width: 100%;
+}
+.login-box-body button {
+  color: white !important;
+}
+.login-box-body .input-group-login {
+  margin-bottom: 2px;
+}
+.input-group-append-login {
+  position: absolute;
+  right: 0;
+}
+.input-group-text-login {
+  border-radius: 0;
+  border: none;
+  width: 38px;
+  text-align: center;
+}
+/* tamano del boton de acciones */
+table a.btn,
+table a.btn-sm {
+  padding: 1px 5px;
+  min-width: 26px;
+}
+/* ajuste de col-form-label hacia la izquierda del contenedor */
+.col-form-label {
+  text-align: right;
+}
+/* ajuste de estilos para paneles de navegacion en formato "pills" */
+ul.nav-pills.pills-list {
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
+    background-color: #dfdfdf;
+}
+ul.nav-pills.pills-list li a.nav-link.active {
+    color: #000000;
+    background-color: #c2e7fc;
+}
+/* ajuste de los colores en general INICIO */
+.bg-indigo{
+  background-color: #6610f2;
+  color: #ffffff;
+}
+.bg-purple{
+  background-color: #6f42c1;
+  color: #ffffff;
+}
+.bg-pink{
+  background-color: #e83e8c;
+  color: #ffffff;
+}
+.bg-orange{
+  background-color: #fd7e14;
+  color: #ffffff;
+}
+.bg-teal{
+  background-color: #20c997;
+  color: #ffffff;
+}
+/* botones y alertas */
+.alert-primary, .bg-primary, .label-primary, .btn-primary, .badge-primary {
+    background-color: #3c8dbc!important;
+    color: #ffffff!important;
+}
+.alert-danger, .alert-error, .bg-danger, .label-danger, .btn-danger, .badge-danger {
+    background-color: #dd4b39!important;
+    color: #ffffff!important;
+}
+.alert-success, .bg-success, .label-success, .btn-success, .badge-success {
+    background-color: #00a65a!important;
+    color: #ffffff!important;
+}
+.alert-warning, .bg-warning, .label-warning, .btn-warning, .badge-warning {
+    background-color: #fabb3d!important;
+    color: #ffffff!important;
+}
+.alert-info, .bg-info, .label-info, .btn-info, .badge-info {
+    background-color: #00c0ef!important;
+    color: #ffffff!important;
+}
+/* colores opacos */
+.alert-danger-disabled, .alert-error-disabled, .bg-danger-disabled, .label-danger-disabled, .btn-danger-disabled {
+    background-color: #ebcccc!important;
+    color: #000000!important;
+}
+.alert-success-disabled, .bg-success-disabled, .label-success-disabled, .btn-success-disabled {
+    background-color: #d0e9c6!important;
+    color: #000000!important;
+}
+.alert-warning-disabled, .bg-warning-disabled, .label-warning-disabled, .btn-warning-disabled {
+    background-color: #fcf8e3!important;
+    color: #000000!important;
+}
+.alert-info-disabled, .bg-info-disabled, .label-info-disabled, .btn-info-disabled {
+    background-color: #d9edf7!important;
+    color: #000000!important;
+}
+/* bordes de contenedores */
+.card-primary.card-outline {
+  border-top: 3px solid #3c8dbc;
+}
+.card-danger.card-outline {
+  border-top: 3px solid #dd4b39;
+}
+.card-success.card-outline {
+  border-top: 3px solid #00a65a;
+}
+.card-warning.card-outline {
+  border-top: 3px solid #fabb3d;
+}
+.card-info.card-outline {
+  border-top: 3px solid #00c0ef;
+}
+/* bordes de contenedores para mensajes informativos */
+.callout.callout-primary {
+  border-left-color: #3c8dbc;
+}
+.callout.callout-danger {
+  border-left-color: #dd4b39;
+}
+.callout.callout-success {
+  border-left-color: #00a65a;
+}
+.callout.callout-warning {
+  border-left-color: #fabb3d;
+}
+.callout.callout-info {
+  border-left-color: #00c0ef;
+}
+/* ajuste de los colores en general FINAL */
+/* ajuste de iconos para los contenedores de mensajes informativos */
+div.callout h4 i.fa {
+  font-size: 21px !important;
+}
+/* ajustes de espaciado entre los contenedores de mensajes informativos */
+div.callout span{
+  padding-bottom: .3rem;
+  display: block;
+}
+/* ajustes para los botones de radio en los formularios */
+label.radio-inline {
+    padding-top: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
+    display: inline-block;
+    padding-left: 20px;
+    vertical-align: middle;
+    font-weight: normal;
+    cursor: pointer;
+}
+/* ajuste de alineacion vertical en elementos de tablas */
+table.table thead tr th,
+table.table tbody tr th,
+table.table tbody tr td {
+  vertical-align: middle;
+}
+/* elimina el espaciado de los parrafos dentro de un td en las tablas */
+table.table-sm tbody tr td p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* ajuste de color para los elementos de la leyenda cuando contienen links */
+ol.breadcrumb.float-sm-right li.breadcrumb-item a {
+  color: #212529;
+}
+ol.breadcrumb.float-sm-right li.breadcrumb-item.active a {
+  color: #6c757d;
+}
+/* ajuste de espaciado para los tags */
+.badge-eps{
+  margin: 2px 1px 3px 2px;
+}
+/* elementos para el ordenamiento de las tablas */
+.fa-long-arrow-up,
+.fa-long-arrow-down{
+  color: #9fbecf;
+}
+.fa-sort-amount-asc,
+.fa-sort-amount-desc{
+  color: #6d828e;
+}
+.fa-sorting {
+  cursor:pointer;
+  white-space: nowrap;
+}
+/* elimina el espaciado inferior cuando se coloca una card / box dentro de una tabla */
+.card-td-style,
+td div.col-12 div.box-td-style {
+  margin-bottom: 0rem!important;
+}
+/* ajusta el box informativo a tamaño minimizado */
+.box-td-style {
+  min-height: 55px;
+}
+/* ajustes de elementos descriptivos en barras de progreso */
+div.row.text-left {
+  margin: 2px;
+  content: ' ';
+  display: table;
+}
+/* ajuste de espaciado bajo la barra de progreso */
+.progress.progress-sm {
+  margin-bottom: 20px;
+}
+/* cambiar puntero en boton con icono de busqueda */
+button i.fa-search:not(:disabled),
+a i.fa-search:not(:disabled),
+table th.ordenable:not(:disabled),
+a.btn:not(:disabled) {
+  cursor: pointer;
+}
+/* posicionamiento de los inputs tipo check */
+.form-check-input {
+  margin: 5px 0px 0px -12px;
+}
+/* para colocar color de fondo a un elemento seleccionado de una tabla */
+tr.selected-tr {
+  background-color: #CBCACA !important;
+}
+/* para colocar el box de botones para paginacion alineado a la derecha */
+div.pull-right ul.pagination{
+  float: right;
+}
+/* color de campo cuando se indica un error con el mismo segun la clase */
+div.form-group.has-error div div.input-group{
+  border: 1px solid #dd4b39;
+  border-radius: 4px;
+}
+/* para evitar que las etiquetas de los campos se distribuyan entre varias lineas */
+div.form-group label.col-form-label{
+  white-space: nowrap;
+}
