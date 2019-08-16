@@ -1,4 +1,4 @@
-# Seguridad laravel 5.8_2019
+# Seguridad laravel 5.8
 
 _Seguridad hecha con Laravel/PHP/bootstrap 4. Esta incluido AdminLTE 3.
 
