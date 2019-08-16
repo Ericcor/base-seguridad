@@ -11,7 +11,7 @@ php artisan migrate:refresh --seed
 Usuario:admin@admin.com
 Clave:1234
 
-## Autores ✒️
+## Autor ✒️
 
 * **Eric Cordova** - *Trabajo Inicial* - [Ericcor](https://github.com/Ericcor)
 
